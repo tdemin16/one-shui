@@ -117,7 +117,7 @@ def get_argparser() -> argparse.ArgumentParser:
             "scrub",
             "bad_teacher",
             "test_loss",
-            "loss_learning",
+            "meta_unlearn",
             "ssd",
             "lipschitz",
             "pgu",

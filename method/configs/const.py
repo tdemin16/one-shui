@@ -137,7 +137,7 @@ def get_const(tmp_args) -> Const:
                 const.pgu_gamma = 0.75
                 const.use_train_aug = False
 
-    if tmp_args.method == "loss_learning":
+    if tmp_args.method == "meta_unlearn":
         const.batch_size = 64
         if tmp_args.dataset != "mufac":
             const.epochs = 3

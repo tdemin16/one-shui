@@ -243,7 +243,7 @@ def print_info(args, model, dataloader):
             print("### Retrain ###")
         case "scrub":
             print("### SCRUB ###")
-        case "loss_learning":
+        case "meta_unlearn":
             print("### Loss Learning ###")
         case "ssd":
             print("### Selective Synapse Dampening ###")

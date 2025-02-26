@@ -8,7 +8,7 @@ from torch.nn.parallel import DistributedDataParallel as DDP
 from tqdm import tqdm
 from method import utils
 from method.approaches import (
-    LossLearning,
+    MetaUnlearn,
     SelectiveSynapseDampening,
     LipschitzRegularization,
     ProjectedGradientUnlearning,
@@ -191,7 +191,7 @@ def bad_teacher(model, datasets, run, args):
     return unlearned_model, None
 
 
-def loss_learning(model, datasets, run, args):
+def meta_unlearn(model, datasets, run, args):
     support_dataset = datasets.get_unlearning_data()["support"]
     support_dataloader = torch.utils.data.DataLoader(
         support_dataset,
@@ -204,7 +204,7 @@ def loss_learning(model, datasets, run, args):
 
     utils.print_info(args, model, support_dataloader)
 
-    loss_learning = LossLearning(
+    meta_unlearn = MetaUnlearn(
         model=model,
         in_features=args.num_classes,  # check
         task_criterion=utils.get_criterion(args.criterion),
@@ -219,9 +219,9 @@ def loss_learning(model, datasets, run, args):
         args=args,
         task=args.task,
     )
-    loss_learning.train_loss(datasets=datasets, args=args)
+    meta_unlearn.train_loss(datasets=datasets, args=args)
 
-    unlearned_model = loss_learning.unlearn_model(support_dataloader, args)
+    unlearned_model = meta_unlearn.unlearn_model(support_dataloader, args)
     unlearned_model.eval()
     criterion = utils.get_criterion(args.criterion)
 
@@ -430,8 +430,8 @@ def main(args):
         best_model, last_model = bad_teacher(model, datasets, run, args)
     elif args.method == "test_loss":
         best_model, last_model = test_loss(model, datasets, run, args)
-    elif args.method == "loss_learning":
-        best_model, last_model = loss_learning(model, datasets, run, args)
+    elif args.method == "meta_unlearn":
+        best_model, last_model = meta_unlearn(model, datasets, run, args)
     elif args.method == "ssd":
         best_model, last_model = ssd(model, datasets, run, args)
     elif args.method == "lipschitz":

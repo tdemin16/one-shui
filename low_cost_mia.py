@@ -213,7 +213,7 @@ def main(args):
 
     datasets = get_datasets(args, splits)
 
-    METHODS = ["pretrain", "lipschitz", "pgu", "ssd", "loss_learning", "bad_teacher", "scrub"]
+    METHODS = ["pretrain", "lipschitz", "pgu", "ssd", "meta_unlearn", "bad_teacher", "scrub"]
     for method in METHODS:
         target_model, _ = load_checkpoints(
             "checkpoints", args.dataset, args.model, method, args.num_identities, 0

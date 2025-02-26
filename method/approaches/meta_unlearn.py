@@ -71,7 +71,7 @@ class MetaLoss(torch.nn.Module):
         return x
 
 
-class LossLearning:
+class MetaUnlearn:
     def __init__(
         self,
         model: torch.nn.Module,
