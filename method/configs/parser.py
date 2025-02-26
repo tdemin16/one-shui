@@ -31,12 +31,6 @@ def get_argparser() -> argparse.ArgumentParser:
         default="checkpoints/", 
         help="Directory where model chekpoints are stored"
     )
-    parser.add_argument(
-        "--pretrain_name",
-        type=str,
-        default="pretrain",
-        help="Changes the pretrain name. Useful for computing MIA",
-    )
 
     parser.add_argument("--hidden_size", type=int, default=512, help="MetaLoss hidden size")
     parser.add_argument(
@@ -64,7 +58,7 @@ def get_argparser() -> argparse.ArgumentParser:
         "--loss_type",
         default="full",
         choices=["full", "original", "unlearned", "scrub", "rev"],
-        help="Type of loss function to use. original: computes alignment btw forget and original validation. Unlearned: computes alignment btw forget and unlearned validation. full: combines both. scrub: uses SCRUB loss. rev: is version asked by a reviewer during rebuttal (see OpenReview)",
+        help="Type of loss function to use. original: computes alignment between forget and original validation. unlearned: computes alignment between forget and unlearned validation. full: combines both. scrub: uses SCRUB loss. rev: is a version asked by a reviewer during the rebuttal phase (see OpenReview)",
     )
     parser.add_argument(
         "--use_accs", 

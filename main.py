@@ -393,7 +393,7 @@ def main(args):
         args.checkpoint_dir,
         args.dataset,
         args.model,
-        f"{args.pretrain_name}_{args.num_identities}_{args.seed}.pth",
+        f"pretrain_{args.num_identities}_{args.seed}.pth",
     )
     if os.path.exists(checkpoint_path):
         print(f"Loading checkpoint {checkpoint_path}")
