@@ -93,7 +93,7 @@ Here is an example on how to compute a reference model for `celebahq/vit_base_pa
 ```bash
 $ mkdir -p shadow_models/
 $ cp checkpoints/celebahq/vit_base_patch16_224/retrain_20_0.pth shadow_models/celebahq/vit_base_patch16_224/pretrain_20_1.pth # here we set the seed to 1 (0 + 1)
-$ python main.py --method meta_unlearn --dataset celebahq --num_identities 20 --checkpoint_dir shadow_models/
+$ python main.py --method meta_unlearn --dataset celebahq --num_identities 20 --checkpoint_dir shadow_models/ --output_dir shadow_models/
 ```
 This will generate a model where the forget data was never part of the training data while accounting for the noise introduced by the unlearning algorithm.
 
