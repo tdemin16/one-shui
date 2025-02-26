@@ -89,7 +89,7 @@ Checkpoints are stored by default in `output/` while they are loaded by default 
 
 ### Membership Inference Attack
 We use one reference model to compute the RMIA attack. Let us assume that we want to target an unlearned model, pretrained and unlearned with a certain seed `--seed your_seed` (this is important as different seeds lead to different splits). To obtain the reference model, we copy the retrained model that has the same seed as the unlearned model to a new directory (e.g. `shadow_models/`), which must have the same structure as the checkpoint directory (i.e. `shadow_models/<dataset>/vit_base_patch16_224/`). We then change the name from `retrain_<num_ids>_<seed>.pth` to `pretrain_<num_ids>_<seed + x>.pth`, where `x` is an integer of choice. Finally, we run the unlearning algorithm by loading the checkpoint from the new directory and setting the seed to `seed + x`.
-Here is an example on how to compute a reference model for celebahq/meta_unlearn_20_0.pth (meta_unlearn on CelebA-HQ, 20 identities, seed 0):
+Here is an example on how to compute a reference model for `celebahq/vit_base_patch16_224/meta_unlearn_20_0.pth` (meta_unlearn on CelebA-HQ, 20 identities, seed 0):
 ```bash
 $ mkdir -p shadow_models/
 $ cp checkpoints/celebahq/vit_base_patch16_224/retrain_20_0.pth shadow_models/celebahq/vit_base_patch16_224/pretrain_20_1.pth # here we set the seed to 1 (0 + 1)
