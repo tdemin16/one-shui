@@ -20,7 +20,15 @@ Unlearning Personal Data from a Single Image</br>(TMLR 2025)
 *Machine unlearning aims to erase data from a model as if the latter never saw them during training. While existing approaches unlearn information from complete or partial access to the training data, this access can be limited over time due to privacy regulations. Currently, no setting or benchmark exists to probe the effectiveness of unlearning methods in such scenarios. To fill this gap, we propose a novel task we call One-Shot Unlearning of Personal Identities (1-SHUI) that evaluates unlearning models when the training data is not available. We focus on unlearning identity data, which is specifically relevant due to current regulations requiring personal data deletion after training. To cope with data absence, we expect users to provide a portraiting picture to aid unlearning. We design requests on CelebA, CelebA-HQ, and MUFAC with different unlearning set sizes to evaluate applicable methods in 1-SHUI. Moreover, we propose MetaUnlearn, an effective method that meta-learns to forget identities from a single image. Our findings indicate that existing approaches struggle when data availability is limited, especially when there is a dissimilarity between the provided samples and the training data.*
 
 ## Citation
-Waiting for TMLR bibtex.
+Waiting for TMLR bibtex. In the meantime you can cite the Arxiv.
+```
+@article{de2024one,
+  title={One-Shot Unlearning of Personal Identities},
+  author={De Min, Thomas and Roy, Subhankar and Mancini, Massimiliano and Lathuili{\`e}re, St{\'e}phane and Ricci, Elisa},
+  journal={arXiv preprint arXiv:2407.12069},
+  year={2024}
+}
+```
 
 ## Installation 
 ### Dependencies
