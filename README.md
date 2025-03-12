@@ -41,7 +41,7 @@ $ conda create -n oneshui python=3.11.7
 ```
 and install pip requirements with:
 ```bash
-pip install -r requirements.txt
+$ pip install -r requirements.txt
 ```
 
 ### Datasets
