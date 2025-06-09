@@ -75,7 +75,7 @@ CelebAMask-HQ/
 > Note: We CelebA-HQ identity annotations can be downloaded [here](https://github.com/ndb796/CelebA-HQ-Face-Identity-and-Attributes-Recognition-PyTorch/tree/main).
 
 ## Run Experiments
-Run each experiment using `python main.py` with different arguments. Run `python main.py --help` for the full list of available arguements. Below we report a couple of scenarios.
+Run each experiment using `python main.py` with different arguments. Run `python main.py --help` for the full list of available arguments. Below we report a couple of scenarios.
 
 ### Pretrain
 Model pre-training on CelebA for 5 identities:
@@ -99,7 +99,7 @@ $ python main.py --method meta_unlearn --dataset mufac --num_identities 10
 Checkpoints are stored by default in `output/` while they are loaded by default from `checkpoints/`. We used this configuration to avoid overwriting "good" checkpoints. These two locations can be changed using the following arguments: `--store_dir path/to/checkpoints` and `--checkpoint_dir path/to/checkpoints`.
 
 ### Membership Inference Attack
-We use one reference model to compute the RMIA attack. Let us assume that we want to target an unlearned model, pretrained and unlearned with a certain seed `--seed your_seed` (this is important as different seeds lead to different splits). To obtain the reference model, we copy the retrained model that has the same seed as the unlearned model to a new directory (e.g. `shadow_models/`), which must have the same structure as the checkpoint directory (i.e. `shadow_models/<dataset>/vit_base_patch16_224/`). We then change the name from `retrain_<num_ids>_<seed>.pth` to `pretrain_<num_ids>_<seed + x>.pth`, where `x` is an integer of choice. Finally, we run the unlearning algorithm by loading the checkpoint from the new directory and setting the seed to `seed + x`.
+We use one reference model to compute the RMIA attack. Let us assume that we want to target an unlearned model, pretrained and unlearned with a certain seed `--seed your_seed` (this is important as different seeds lead to different splits). To obtain the reference model, we copy the retrained model that has the same seed as the unlearned model to a new directory (e.g., `shadow_models/`), which must have the same structure as the checkpoint directory (i.e., `shadow_models/<dataset>/vit_base_patch16_224/`). We then change the name from `retrain_<num_ids>_<seed>.pth` to `pretrain_<num_ids>_<seed + x>.pth`, where `x` is an integer of choice. Finally, we run the unlearning algorithm by loading the checkpoint from the new directory and setting the seed to `seed + x`.
 Here is an example on how to compute a reference model for `celebahq/vit_base_patch16_224/meta_unlearn_20_0.pth` (meta_unlearn on CelebA-HQ, 20 identities, seed 0):
 ```bash
 $ mkdir -p shadow_models/
@@ -108,12 +108,12 @@ $ python main.py --method meta_unlearn --dataset celebahq --num_identities 20 --
 ```
 This step will generate a model in which the forget set was never part of the training data while accounting for the noise introduced by the unlearning algorithm.
 
-To compute the membership inference attack is sufficient to run `low_cost_mia.py`:
+To compute the membership inference attack, it is sufficient to run `low_cost_mia.py`:
 ```bash
 python low_cost_mia.py --dataset celebahq --num_identities 20
 ```
 
-> Note: adjust shadow models dir, checkpoints dir and target methods directly in `low_cost_mia.py`
+> Note: adjust shadow models dir, checkpoints dir, and target methods directly in `low_cost_mia.py`
 
 ## Acknowledgements
 We acknowledge the CINECA award under the ISCRA initiative for the availability of high-performance computing resources and support. E.R. and M.M. are supported by the MUR PNRR project FAIR - Future AI Research (PE00000013), funded by NextGeneration EU. E.R. is also supported by the EU projects AI4TRUST (No.101070190) and ELIAS (No.01120237) and the PRIN project LEGO-AI (Prot.2020TA3K9N). T.D.M. is funded by NextGeneration EU. This work has been supported by the French National Research Agency (ANR) with the ANR-20-CE23-0027.
