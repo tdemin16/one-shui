@@ -110,7 +110,7 @@ This step will generate a model in which the forget set was never part of the tr
 
 To compute the membership inference attack is sufficient to run `low_cost_mia.py`:
 ```bash
-python low_cost_mia --dataset celebahq --num_identities 20
+python low_cost_mia.py --dataset celebahq --num_identities 20
 ```
 
 > Note: adjust shadow models dir, checkpoints dir and target methods directly in `low_cost_mia.py`
